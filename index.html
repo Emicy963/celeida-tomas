@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parabéns Celeida! 🎉</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .floating-heart {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .floating-heart:nth-child(2) {
+            animation-delay: -1s;
+        }
+        
+        .floating-heart:nth-child(3) {
+            animation-delay: -2s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 2s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(139, 69, 19, 0.2);
+        }
+        
+        .game-card {
+            perspective: 1000px;
+        }
+        
+        .card-inner {
+            transition: transform 0.3s;
+            transform-style: preserve-3d;
+        }
+        
+        .card-flipped {
+            transform: rotateY(180deg);
+        }
+        
+        .card-front, .card-back {
+            backface-visibility: hidden;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .card-back {
+            transform: rotateY(180deg);
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-amber-50 to-orange-100 min-h-screen">
+    <!-- Header -->
+    <header class="text-center py-12 bg-gradient-to-r from-amber-200 to-orange-200">
+        <div class="relative">
+            <h1 class="text-6xl font-bold text-amber-900 mb-4 fade-in">🎉 Parabéns Celeida! 🎉</h1>
+            <p class="text-2xl text-amber-800 fade-in">20 Anos de Luz e Alegria ✨</p>
+            <div class="absolute top-0 right-1/4 floating-heart text-4xl">❤️</div>
+            <div class="absolute top-4 left-1/4 floating-heart text-3xl">🎈</div>
+            <div class="absolute top-8 right-1/3 floating-heart text-3xl">🌟</div>
+        </div>
+    </header>
+
+    <div class="container mx-auto px-4 py-8">
+        <!-- Seção de Imagens e Mensagens -->
+        <section class="mb-16">
+            <h2 class="text-4xl font-bold text-amber-900 text-center mb-12">Momentos Especiais</h2>
+            
+            <div class="images-container space-y-12 max-w-4xl mx-auto">
+                <!-- Primeira imagem e mensagem -->
+                <div class="flex flex-col lg:flex-row items-center gap-8 card-hover bg-white rounded-2xl p-8 shadow-lg">
+                    <div class="lg:w-1/2">
+                        <img src="assets/images/tomas1.png" alt="Imagem 1" 
+                             class="w-full h-80 object-cover rounded-xl border-4 border-amber-200 shadow-lg">
+                    </div>
+                    <div class="lg:w-1/2 special-message">
+                        <div class="bg-gradient-to-r from-amber-100 to-orange-100 p-6 rounded-xl border-l-4 border-amber-500">
+                            <p class="text-xl text-amber-800 italic leading-relaxed">
+                                "Muito obrigado, pelos momentos alegres que me proporcionaste!"
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Segunda imagem e mensagem -->
+                <div class="flex flex-col lg:flex-row-reverse items-center gap-8 card-hover bg-white rounded-2xl p-8 shadow-lg">
+                    <div class="lg:w-1/2">
+                        <img src="assets/images/tomas2.png" alt="Imagem 2" 
+                             class="w-full h-80 object-cover rounded-xl border-4 border-amber-200 shadow-lg">
+                    </div>
+                    <div class="lg:w-1/2 special-message">
+                        <div class="bg-gradient-to-l from-amber-100 to-orange-100 p-6 rounded-xl border-r-4 border-amber-500">
+                            <p class="text-xl text-amber-800 italic leading-relaxed">
+                                "Com certeza absoluta, tu foste a melhor pessoa que já conheci!"
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Adicione mais blocos de imagem conforme necessário -->
+                <div class="text-center">
+                    <p class="text-amber-700 italic">✨ Adicione mais imagens e mensagens aqui ✨</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mini-Jogo: Jogo da Memória dos Corações -->
+        <section class="mb-16 bg-white rounded-2xl p-8 shadow-lg max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold text-amber-900 text-center mb-8">🎮 Jogo da Memória do Aniversário</h2>
+            <p class="text-center text-amber-700 mb-6">Encontre os pares para revelar uma mensagem especial!</p>
+            
+            <div class="game-board grid grid-cols-4 gap-4 max-w-md mx-auto mb-6" id="gameBoard">
+                <!-- Cards serão gerados pelo JavaScript -->
+            </div>
+            
+            <div class="text-center">
+                <p class="text-lg text-amber-800 mb-4">Movimentos: <span id="moves">0</span></p>
+                <button onclick="resetGame()" 
+                        class="bg-amber-500 hover:bg-amber-600 text-white px-6 py-3 rounded-full font-semibold transition-colors">
+                    Novo Jogo
+                </button>
+                <div id="winMessage" class="hidden mt-4 p-4 bg-green-100 border border-green-400 rounded-lg">
+                    <p class="text-green-800 font-semibold">🎉 Parabéns! Você é incrível, assim como a Celeida! 🎉</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mensagem Final -->
+        <section class="final-messages space-y-8 max-w-4xl mx-auto">
+            <div class="final-message bg-white rounded-2xl p-8 shadow-lg card-hover">
+                <h2 class="text-3xl font-bold text-amber-900 mb-4 text-center">Você é incrível!</h2>
+                <p class="text-lg text-amber-800 leading-relaxed">
+                    Provavelmente já ouviste todo tipo de elogios hoje e você sabe que eu odeio ser cliché, então vou tentar garantir que diga tudo o que tenho para te dizer do meu jeito!
+                </p>
+            </div>
+
+            <div class="final-message bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl p-8 shadow-lg border-2 border-amber-200">
+                <h2 class="text-3xl font-bold text-amber-900 mb-6 text-center">Pior Felicitação de Sempre!</h2>
+                <div class="space-y-6 text-amber-800 leading-relaxed">
+                    <p>
+                        Não queria apenas falar contigo hoje, mas eu sei que é importante para ti e se é importante para ti, também é para mim. Vou começar por te dizer, que desde que deixou de se falar, não passa nenhum dia, nenhum dia mesmo que eu não pense em ti e como tu és especial para mim, por acaso voltei a sonhar, mas todos são horríveis.
+                    </p>
+                    <p>
+                        Uma vez a minha mãe disse para mim "As pessoas só estarão contigo por interesse em alguma coisa, depois de conseguirem, vão te descartar!" e felizmente ela estava certa bem, não completamente porque tem pessoas que vale a pena correr o risco, porque de certa forma todos nós somos assim e não é algo necessariamente ruim!
+                    </p>
+                    <p>
+                        Eu sei que esse não é o caso contigo (espero que não kkkk), e na real nem se fosse eu nunca me arrependeria de te ter conhecido. Sinceramente tu és uma das únicas pessoas que não liga para o meu modo foda-se, muito pelo contrário, se fosse para escolher pessoas perfeitas, acredita que serias uma das poucas pessoas que escolheria.
+                    </p>
+                </div>
+            </div>
+
+            <div class="final-message bg-white rounded-2xl p-8 shadow-lg">
+                <div class="space-y-6 text-amber-800 leading-relaxed">
+                    <p>
+                        Não por não teres defeitos, mas porque o que uma outra pessoa pode chamar defeito, eu adoraria em ti, ou seja, eu literalmente gosto de tudo em ti e eu não sou pessoa de dizer coisas por impulso e sem pensar primeiro, eu já pensei sobre isso, acho que centenas de vezes e cheguei a essa conclusão.
+                    </p>
+                    <p>
+                        Esses dias não tenho saído muito, consequentemente tenho pensado muito, mais que o normal (a maioria não são boas coisas) mas também quase sempre penso em ti e eu gosto de pensar em ti, porque tu me trazes um sentimento de paz e de conforto, às vezes quando estou a treinar o cubo crio uma espécie de conversa imaginária contigo para me ajudar a focar e a me manter acordado!
+                    </p>
+                </div>
+            </div>
+
+            <div class="final-message bg-gradient-to-br from-red-50 to-pink-50 rounded-2xl p-8 shadow-lg border-2 border-red-200">
+                <div class="space-y-6 text-red-800 leading-relaxed">
+                    <p>
+                        Antes de agradecer preciso te pedir desculpas por tudo de ruim que já te fiz sentir, acredita que não era a minha intenção, desculpas por não te amar o suficiente para dizer na tua frente, desculpa por ser fraco, desculpa por ser um medricas, desculpa por não enxergar mais brilho na vida...
+                    </p>
+                </div>
+            </div>
+
+            <div class="final-message bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-8 shadow-lg border-2 border-green-200">
+                <div class="space-y-6 text-green-800 leading-relaxed">
+                    <p>
+                        Sinceramente, a minha mente está literalmente uma merda, mas muito obrigado por me ajudares a me manter acordado, obrigado por seres a melhor amiga que já tive na vida, obrigado por me ouvires mesmo quando não querias, obrigado por aturar as minhas confusões, obrigado por tudo e mais alguma coisa que esqueci de meter aqui, mas acima de tudo obrigado por seres o ser vivo (não da minha família) que eu mais amei, simplesmente obrigado por existires.
+                    </p>
+                    <p>
+                        Tem muita coisa que eu queria te falar, mas estou cansado de nunca te dizer as coisas cara a cara, talvez um dia te diga tudo que tenho aqui na minha cabeça, guardadas só para ti!
+                    </p>
+                </div>
+            </div>
+
+            <div class="final-message bg-amber-100 rounded-2xl p-8 shadow-lg border-2 border-amber-300">
+                <p class="text-amber-800 italic text-center">
+                    <strong>OBS:</strong> Comecei esse projeto às 02:46AM-07/08, são agora 05:33AM-12/08, então espero que chores. kkk
+                </p>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="text-center py-8 mt-16">
+            <p class="text-amber-700 text-lg">❤️ Feliz Aniversário, Celeida Tomas! ❤️</p>
+            <p class="text-amber-600 text-sm mt-2">Com muito carinho e amor 💕</p>
+        </footer>
+    </div>
+
+    <script>
+        // Mini-jogo: Jogo da Memória
+        const gameSymbols = ['🎂', '🎈', '🎁', '🌟', '❤️', '🎉', '🌹', '✨'];
+        let gameCards = [...gameSymbols, ...gameSymbols];
+        let flippedCards = [];
+        let matches = 0;
+        let moves = 0;
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function createGameBoard() {
+            const gameBoard = document.getElementById('gameBoard');
+            gameBoard.innerHTML = '';
+            shuffleArray(gameCards);
+            
+            gameCards.forEach((symbol, index) => {
+                const card = document.createElement('div');
+                card.className = 'game-card w-16 h-16 cursor-pointer';
+                card.innerHTML = `
+                    <div class="card-inner w-full h-full relative">
+                        <div class="card-front bg-amber-300 rounded-lg flex items-center justify-center text-2xl font-bold text-amber-800 border-2 border-amber-400">
+                            ?
+                        </div>
+                        <div class="card-back bg-white rounded-lg flex items-center justify-center text-3xl border-2 border-amber-300">
+                            ${symbol}
+                        </div>
+                    </div>
+                `;
+                card.onclick = () => flipCard(card, symbol, index);
+                gameBoard.appendChild(card);
+            });
+        }
+
+        function flipCard(cardElement, symbol, index) {
+            if (flippedCards.length >= 2 || cardElement.classList.contains('card-flipped')) return;
+
+            const cardInner = cardElement.querySelector('.card-inner');
+            cardInner.classList.add('card-flipped');
+            flippedCards.push({element: cardElement, symbol: symbol, index: index});
+
+            if (flippedCards.length === 2) {
+                moves++;
+                document.getElementById('moves').textContent = moves;
+                
+                setTimeout(() => {
+                    if (flippedCards[0].symbol === flippedCards[1].symbol && 
+                        flippedCards[0].index !== flippedCards[1].index) {
+                        // Match encontrado
+                        matches++;
+                        flippedCards = [];
+                        
+                        if (matches === gameSymbols.length) {
+                            document.getElementById('winMessage').classList.remove('hidden');
+                        }
+                    } else {
+                        // Não é match, virar as cartas de volta
+                        flippedCards.forEach(card => {
+                            card.element.querySelector('.card-inner').classList.remove('card-flipped');
+                        });
+                        flippedCards = [];
+                    }
+                }, 1000);
+            }
+        }
+
+        function resetGame() {
+            flippedCards = [];
+            matches = 0;
+            moves = 0;
+            document.getElementById('moves').textContent = moves;
+            document.getElementById('winMessage').classList.add('hidden');
+            createGameBoard();
+        }
+
+        // Inicializar o jogo
+        createGameBoard();
+    </script>
+</body>
+</html>
