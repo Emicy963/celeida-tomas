@@ -1,325 +1,790 @@
 <!DOCTYPE html>
-<html lang="pt">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parabéns Celeida! 🎉</title>
+<html lang="pt-AO">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Feliz Aniversário, Celeida Tomás — 21 Anos 🎉</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
     <style>
-        .floating-heart {
-            animation: float 3s ease-in-out infinite;
-        }
-        
-        .floating-heart:nth-child(2) {
-            animation-delay: -1s;
-        }
-        
-        .floating-heart:nth-child(3) {
-            animation-delay: -2s;
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-        }
-        
-        .fade-in {
-            animation: fadeIn 2s ease-in;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .card-hover {
-            transition: all 0.3s ease;
-        }
-        
-        .card-hover:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(251, 191, 36, 0.2);
-        }
-        
-        .game-card {
-            perspective: 1000px;
-        }
-        
-        .card-inner {
-            transition: transform 0.3s;
-            transform-style: preserve-3d;
-        }
-        
-        .card-flipped {
-            transform: rotateY(180deg);
-        }
-        
-        .card-front, .card-back {
-            backface-visibility: hidden;
-            position: absolute;
-            width: 100%;
-            height: 100%;
-        }
-        
-        .card-back {
-            transform: rotateY(180deg);
-        }
+      *, *::before, *::after { box-sizing: border-box; margin: 0; }
+      html { scroll-behavior: smooth; }
 
-        /* Estilos específicos para imagens */
-        .image-container {
-            width: 100%;
-            height: 400px;
-            position: relative;
-            overflow: hidden;
-            border-radius: 1rem;
-            border: 3px solid rgb(251 191 36);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
+      body {
+        background-color: #0d0b08;
+        font-family: 'Inter', sans-serif;
+        color: #f1f5f9;
+        overflow-x: hidden;
+      }
 
-        .image-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
-            transition: transform 0.3s ease;
-        }
+      /* ── Gradient text ── */
+      .gold-text {
+        background: linear-gradient(135deg, #fde68a, #d97706);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
 
-        .image-container:hover img {
-            transform: scale(1.05);
-        }
+      /* ── Hero ── */
+      .hero-wrap {
+        position: relative;
+        height: 100svh;
+        min-height: 620px;
+      }
+      .hero-wrap img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center top;
+      }
+      .hero-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to bottom,
+          rgba(13,11,8,0.15) 0%,
+          rgba(13,11,8,0.05) 25%,
+          rgba(13,11,8,0.6) 65%,
+          rgba(13,11,8,1) 100%
+        );
+      }
+      .hero-bottom {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 2rem 1.5rem 3.5rem;
+        text-align: center;
+      }
 
-        /* Placeholder para imagens não encontradas */
-        .image-placeholder {
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgb(55 65 81), rgb(75 85 99));
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: rgb(156 163 175);
-            font-size: 1.25rem;
-            text-align: center;
-            padding: 2rem;
-        }
+      /* ── Age badge ── */
+      .age-ring {
+        display: inline-flex;
+        width: 76px;
+        height: 76px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #d97706, #fbbf24);
+        padding: 2px;
+        margin-bottom: 1.25rem;
+      }
+      .age-ring-inner {
+        flex: 1;
+        border-radius: 50%;
+        background: #0d0b08;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1px;
+      }
+
+      /* ── Glows ── */
+      .gold-glow { box-shadow: 0 0 40px rgba(217,119,6,0.22); }
+
+      /* ── Reveal ── */
+      .reveal {
+        opacity: 0;
+        transform: translateY(22px);
+        transition: opacity 0.8s ease, transform 0.8s ease;
+        will-change: opacity, transform;
+      }
+      .reveal.visible { opacity: 1; transform: translateY(0); }
+
+      /* ── Photo grid ── */
+      .photo-card {
+        overflow: hidden;
+        border-radius: 0.875rem;
+        transition: transform 0.4s ease;
+        will-change: transform;
+        background: #17110a;
+      }
+      .photo-card:hover { transform: scale(1.025); }
+      .photo-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .image-placeholder {
+        width: 100%;
+        height: 100%;
+        min-height: 160px;
+        background: linear-gradient(135deg, #292018, #1a140d);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: rgb(217 180 120 / 0.7);
+        font-size: 1rem;
+        text-align: center;
+        padding: 1rem;
+      }
+
+      /* ── Quote card (photo + mensagem) ── */
+      .quote-photo {
+        width: 100%;
+        height: 340px;
+        position: relative;
+        overflow: hidden;
+        border-radius: 1rem;
+        border: 3px solid rgb(217 119 6 / 0.5);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+      }
+      .quote-photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        transition: transform 0.3s ease;
+      }
+      .quote-photo:hover img { transform: scale(1.05); }
+
+      /* ── Letter ── */
+      .letter-card {
+        background: linear-gradient(135deg, rgba(217,119,6,0.08), rgba(251,191,36,0.03));
+        border: 1px solid rgba(217,119,6,0.2);
+        border-radius: 1.25rem;
+      }
+      .letter-body {
+        font-family: 'Inter', sans-serif;
+        font-size: 1.05rem;
+        line-height: 1.85;
+        color: #e2e8f0;
+      }
+
+      /* ── Timeline ── */
+      .timeline-bar { background: linear-gradient(to bottom, #d97706, #fbbf24); }
+      .timeline-node {
+        background: linear-gradient(135deg, #d97706, #fbbf24);
+        box-shadow: 0 0 20px rgba(217,119,6,0.45);
+      }
+      .timeline-block {
+        background: rgba(255,255,255,0.025);
+        border: 1px solid rgba(255,255,255,0.06);
+        border-radius: 1.25rem;
+        backdrop-filter: blur(4px);
+      }
+      .timeline-block-active { border-color: rgba(251,191,36,0.35); }
+
+      /* ── Divider ── */
+      .gold-divider {
+        height: 1px;
+        background: linear-gradient(to right, transparent, rgba(217,119,6,0.3), transparent);
+        margin: 0 auto;
+        max-width: 36rem;
+      }
+
+      /* ── Ambient orbs ── */
+      @keyframes orb-drift {
+        0%, 100% { transform: translate(0,0) scale(1);    opacity: 0.1; }
+        40%       { transform: translate(18px,-12px) scale(1.06); opacity: 0.16; }
+        70%       { transform: translate(-10px,8px) scale(0.96);  opacity: 0.12; }
+      }
+      .orb   { animation: orb-drift 14s ease-in-out infinite; will-change: transform, opacity; }
+      .orb-b { animation-delay: -5s; animation-duration: 18s; }
+      .orb-c { animation-delay: -9s; animation-duration: 11s; }
+
+      /* ── Confetti ── */
+      .confetti-wrap {
+        position: fixed; top: 0; left: 0;
+        width: 100%; height: 100%;
+        pointer-events: none; z-index: 0; overflow: hidden;
+      }
+      .confetti-piece {
+        position: absolute; top: -16px;
+        animation: confetti-fall linear infinite;
+        will-change: transform, opacity;
+      }
+      @keyframes confetti-fall {
+        0%   { transform: translateY(-16px) rotate(0deg);   opacity: 0.85; }
+        100% { transform: translateY(110vh) rotate(540deg); opacity: 0;    }
+      }
+
+      /* ── Jogo da Memória ── */
+      .game-card { perspective: 1000px; }
+      .card-inner {
+        transition: transform 0.3s;
+        transform-style: preserve-3d;
+      }
+      .card-flipped { transform: rotateY(180deg); }
+      .card-front, .card-back {
+        backface-visibility: hidden;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+      }
+      .card-back { transform: rotateY(180deg); }
+
+      /* ── Jogo Caça ao Coração ── */
+      .heart-field {
+        position: relative;
+        height: 320px;
+        border-radius: 1rem;
+        background: linear-gradient(135deg, rgba(217,119,6,0.08), rgba(0,0,0,0.2));
+        border: 1px solid rgba(217,119,6,0.2);
+        overflow: hidden;
+      }
+      .heart-target {
+        position: absolute;
+        font-size: 2rem;
+        background: none;
+        border: none;
+        cursor: pointer;
+        line-height: 1;
+        transform: scale(0);
+        animation: heart-pop 0.9s ease forwards;
+        filter: drop-shadow(0 0 6px rgba(251,191,36,0.5));
+      }
+      @keyframes heart-pop {
+        0%   { transform: scale(0); }
+        15%  { transform: scale(1.15); }
+        25%  { transform: scale(1); }
+        85%  { transform: scale(1); }
+        100% { transform: scale(0); }
+      }
     </style>
-</head>
-<body class="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 min-h-screen text-gray-100">
-    <!-- Header -->
-    <header class="text-center py-12 bg-gradient-to-r from-gray-800 to-gray-700 border-b-2 border-amber-400">
-        <div class="relative">
-            <h1 class="text-6xl font-bold text-amber-400 mb-4 fade-in drop-shadow-lg">🎉 Parabéns Celeida! 🎉</h1>
-            <p class="text-2xl text-amber-300 fade-in">20 Anos de Luz e Alegria ✨</p>
-            <div class="absolute top-0 right-1/4 floating-heart text-4xl">❤️</div>
-            <div class="absolute top-4 left-1/4 floating-heart text-3xl">🎈</div>
-            <div class="absolute top-8 right-1/3 floating-heart text-3xl">🌟</div>
-        </div>
-    </header>
+  </head>
 
-    <div class="container mx-auto px-4 py-8">
-        <!-- Seção de Imagens e Mensagens -->
-        <section class="mb-16">
-            <h2 class="text-4xl font-bold text-amber-400 text-center mb-12">Momentos Especiais</h2>
-            
-            <div class="images-container space-y-12 max-w-6xl mx-auto">
-                <!-- Primeira imagem e mensagem -->
-                <div class="flex flex-col lg:flex-row items-center gap-8 card-hover bg-gray-800 rounded-2xl p-8 shadow-2xl border border-gray-700">
-                    <div class="lg:w-1/2">
-                        <div class="image-container">
-                            <img src="assets/images/tomas1.jpg" alt="Imagem 1" onerror="this.parentNode.innerHTML='<div class=\'image-placeholder\'><div class=\'text-6xl mb-4\'>📸</div><div>Imagem 1</div><div class=\'text-sm mt-2 opacity-75\'>tomas1.jpg</div></div>'">
-                        </div>
-                    </div>
-                    <div class="lg:w-1/2 special-message">
-                        <div class="bg-gradient-to-r from-amber-900 to-orange-900 p-6 rounded-xl border-l-4 border-amber-400 shadow-lg">
-                            <p class="text-xl text-amber-200 italic leading-relaxed">
-                                "Muito obrigado, pelos momentos alegres que me proporcionaste!"
-                            </p>
-                        </div>
-                    </div>
-                </div>
+  <body>
 
-                <!-- Segunda imagem e mensagem -->
-                <div class="flex flex-col lg:flex-row-reverse items-center gap-8 card-hover bg-gray-800 rounded-2xl p-8 shadow-2xl border border-gray-700">
-                    <div class="lg:w-1/2">
-                        <div class="image-container">
-                            <img src="assets/images/tomas2.jpg" alt="Imagem 2" onerror="this.parentNode.innerHTML='<div class=\'image-placeholder\'><div class=\'text-6xl mb-4\'>📸</div><div>Imagem 2</div><div class=\'text-sm mt-2 opacity-75\'>tomas2.jpg</div></div>'">
-                        </div>
-                    </div>
-                    <div class="lg:w-1/2 special-message">
-                        <div class="bg-gradient-to-l from-amber-900 to-orange-900 p-6 rounded-xl border-r-4 border-amber-400 shadow-lg">
-                            <p class="text-xl text-amber-200 italic leading-relaxed">
-                                "Com certeza absoluta, tu foste a melhor pessoa que já conheci!"
-                            </p>
-                        </div>
-                    </div>
-                </div>
+    <!-- Confetti -->
+    <div class="confetti-wrap" id="confetti"></div>
 
-                <!-- Terceira seção para adicionar mais -->
-                <!-- <div class="text-center bg-gray-800 rounded-2xl p-8 border border-gray-700 border-dashed">
-                    <div class="text-6xl mb-4">➕</div>
-                    <p class="text-amber-400 italic text-lg">Adicione mais imagens e mensagens aqui</p>
-                    <p class="text-gray-400 text-sm mt-2">Substitua as imagens pelos caminhos corretos</p>
-                </div> -->
-            </div>
-        </section>
-
-        <!-- Mini-Jogo: Jogo da Memória dos Corações -->
-        <section class="mb-16 bg-gray-800 rounded-2xl p-8 shadow-2xl max-w-4xl mx-auto border border-gray-700">
-            <h2 class="text-3xl font-bold text-amber-400 text-center mb-8">🎮 Jogo da Memória do Aniversário</h2>
-            <p class="text-center text-amber-300 mb-6">Encontre os pares para revelar uma mensagem especial!</p>
-            
-            <div class="game-board grid grid-cols-4 gap-4 max-w-md mx-auto mb-6" id="gameBoard">
-                <!-- Cards serão gerados pelo JavaScript -->
-            </div>
-            
-            <div class="text-center">
-                <p class="text-lg text-amber-300 mb-4">Movimentos: <span id="moves">0</span></p>
-                <button onclick="resetGame()" 
-                        class="bg-amber-600 hover:bg-amber-500 text-white px-6 py-3 rounded-full font-semibold transition-colors shadow-lg">
-                    Novo Jogo
-                </button>
-                <div id="winMessage" class="hidden mt-4 p-4 bg-green-900 border border-green-600 rounded-lg">
-                    <p class="text-green-300 font-semibold">🎉 Parabéns! Você é incrível, Celeida Tomás! 🎉</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Mensagem Final -->
-        <section class="final-messages space-y-8 max-w-4xl mx-auto">
-            <div class="final-message bg-gray-800 rounded-2xl p-8 shadow-2xl card-hover border border-gray-700">
-                <h2 class="text-3xl font-bold text-amber-400 mb-4 text-center">Você é incrível!</h2>
-                <p class="text-lg text-gray-300 leading-relaxed">
-                    Provavelmente já ouviste todo tipo de elogios hoje, e nem quero te elogiar já te elogiei demais desde que te conheço, então deixo as frases clichês para quem não sabe programar. kkkk
-                </p>
-            </div>
-
-            <div class="final-message bg-gradient-to-br from-gray-800 to-gray-700 rounded-2xl p-8 shadow-2xl border-2 border-amber-500">
-                <h2 class="text-3xl font-bold text-amber-400 mb-6 text-center">Melhor Felicitação de Sempre! (senão for gastei o meu tempo atoa😭)</h2>
-                <div class="space-y-6 text-gray-300 leading-relaxed">
-                    <p>
-                        Na verdade, deixei o melhor para fim, eu sou incrível eu sei, mas com certeza se existe alguém mais incrível que eu, (para além do Elon Musk, Albert Einstein, Issac Newton, a minha mãe e uma monte de pessoas) claro que és tu.
-                    </p>
-                    <p>
-                        Eu já falei super bem de você, que já nem sei mais o que pode te ser novidade vindo mim.
-                    </p>
-                    <p>
-                        Mas nos último três anos te parabenizei* fazendo um projeto com programação, então quando eu for rico, podes me ligar vou te mandar um saldo de mili*.😭
-                    </p>
-                </div>
-            </div>
-
-            <div class="final-message bg-gray-800 rounded-2xl p-8 shadow-2xl border border-gray-700">
-                <div class="space-y-6 text-gray-300 leading-relaxed">
-                    <p>
-                        Eu amo tudo em ti, até os defeitos, mas por favor, reduz nesse mambo de mandares bué de sticker.
-                    </p>
-                </div>
-            </div>
-
-            <div class="final-message bg-gradient-to-br from-green-900 to-emerald-900 rounded-2xl p-8 shadow-2xl border-2 border-green-500">
-                <div class="space-y-6 text-green-200 leading-relaxed">
-                    <p>
-                        Tem muita coisa que eu queria te falar, mas estou cansado de escrever se quiseres ouvir mais vem na minha casa (e com bolo)😭, talvez te diga tudo que tenho aqui na minha cabeça, guardadas só para ti!
-                    </p>
-                </div>
-            </div>
-
-            <div class="final-message bg-amber-900 rounded-2xl p-8 shadow-2xl border-2 border-amber-500">
-                <p class="text-amber-200 italic text-center">
-                    <strong>OBS:</strong> Comecei esse projeto às 10:30AM-12/08, são agora 11:06PM-12/08, então espero que chores. kkk
-                </p>
-            </div>
-        </section>
-
-        <!-- Footer -->
-        <footer class="text-center py-8 mt-16 border-t border-gray-700">
-            <p class="text-amber-400 text-lg">❤️ Feliz Aniversário, Celeida Tomas! ❤️</p>
-            <p class="text-amber-300 text-sm mt-2">Com muito carinho e amor 💕</p>
-        </footer>
+    <!-- Ambient orbs -->
+    <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden" aria-hidden="true">
+      <div class="orb   absolute top-16  left-1/3  w-80 h-80 bg-amber-900 rounded-full blur-3xl"></div>
+      <div class="orb-b absolute bottom-24 right-1/4 w-96 h-96 bg-orange-900 rounded-full blur-3xl"></div>
+      <div class="orb-c absolute top-1/2 left-8    w-56 h-56 bg-amber-800 rounded-full blur-3xl"></div>
     </div>
 
+    <!-- ───────────────────────────────────────────────
+         HERO
+    ─────────────────────────────────────────────── -->
+    <section class="hero-wrap z-10 relative">
+      <img src="assets/images/tomas2.jpg" alt="Celeida Tomás" onerror="this.parentNode.innerHTML='<div class=\'image-placeholder\' style=\'height:100%\'><div class=\'text-6xl mb-4\'>📸</div><div>Celeida Tomás</div></div>'" />
+      <div class="hero-overlay"></div>
+      <div class="hero-bottom">
+        <div class="flex justify-center mb-4">
+          <div class="age-ring">
+            <div class="age-ring-inner">
+              <span class="text-xl font-semibold gold-text">21</span>
+              <span class="text-gray-500 text-xs font-light">anos</span>
+            </div>
+          </div>
+        </div>
+
+        <p class="text-amber-300/80 text-xs font-light tracking-[0.35em] uppercase mb-4">
+          12 de Agosto · 2026
+        </p>
+
+        <h1 class="font-['Cormorant_Garamond'] font-light text-white leading-tight" style="font-size: clamp(2.6rem, 8vw, 5rem)">
+          Feliz Aniversário,<br />
+          <span class="gold-text font-semibold italic">Celeida Tomás</span>
+        </h1>
+
+        <p class="text-amber-200/90 mt-4 text-lg">21 Anos de Luz e Alegria ✨</p>
+
+        <p class="text-gray-400 mt-4 text-sm tracking-widest font-light">
+          com todo o carinho &middot; <span class="text-white/90">Anderson</span>
+        </p>
+
+        <div class="mt-10">
+          <p class="text-gray-600 text-xs mb-2">desliza para ver</p>
+          <div class="w-px h-10 mx-auto" style="background:linear-gradient(to bottom,rgba(217,119,6,0.6),transparent)"></div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ───────────────────────────────────────────────
+         CONQUISTAS E MOMENTOS (foto + mensagem)
+    ─────────────────────────────────────────────── -->
+    <section class="relative z-10 py-20 px-4 md:px-8">
+      <div class="max-w-6xl mx-auto">
+
+        <div class="text-center mb-14 reveal">
+          <p class="text-amber-400 text-xs font-medium uppercase tracking-[0.3em] mb-4">Este ano</p>
+          <h2 class="font-['Cormorant_Garamond'] font-light text-white" style="font-size:clamp(2rem,5vw,3rem)">
+            Momentos Especiais
+          </h2>
+        </div>
+
+        <div class="space-y-10 max-w-5xl mx-auto">
+
+          <!-- Card 1 -->
+          <div class="flex flex-col lg:flex-row items-center gap-8 reveal">
+            <div class="lg:w-1/2 w-full">
+              <div class="quote-photo gold-glow">
+                <img src="assets/images/tomas1.jpg" alt="Celeida Tomás" loading="lazy" onerror="this.parentNode.innerHTML='<div class=\'image-placeholder\'><div class=\'text-6xl mb-4\'>📸</div><div>tomas1.jpg</div></div>'" />
+              </div>
+            </div>
+            <div class="lg:w-1/2 w-full">
+              <div class="letter-card px-6 py-6 md:px-8 md:py-8">
+                <p class="text-amber-400/80 text-xs font-medium uppercase tracking-[0.25em] mb-3">Orgulho</p>
+                <p class="text-xl text-amber-100 leading-relaxed" style="font-family:'Cormorant Garamond', serif; font-style: italic;">
+                  "Ver-te a crescer profissionalmente esse ano foi dos meus orgulhos favoritos, e olha que a lista já é longa."
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="flex flex-col lg:flex-row-reverse items-center gap-8 reveal" data-delay="100">
+            <div class="lg:w-1/2 w-full">
+              <div class="quote-photo gold-glow">
+                <img src="assets/images/tomas4.jpg" alt="Celeida Tomás na formatura" loading="lazy" onerror="this.parentNode.innerHTML='<div class=\'image-placeholder\'><div class=\'text-6xl mb-4\'>🎓</div><div>tomas4.jpg</div></div>'" />
+              </div>
+            </div>
+            <div class="lg:w-1/2 w-full">
+              <div class="letter-card px-6 py-6 md:px-8 md:py-8">
+                <p class="text-amber-400/80 text-xs font-medium uppercase tracking-[0.25em] mb-3">Formatura 🎓</p>
+                <p class="text-xl text-amber-100 leading-relaxed" style="font-family:'Cormorant Garamond', serif; font-style: italic;">
+                  "Formada! Ainda bem que pelo menos uma pessoa aqui está a levar a vida a sério, kkkk. Parabéns, a sério."
+                </p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <div class="gold-divider my-4"></div>
+
+
+    <!-- ───────────────────────────────────────────────
+         GALERIA
+    ─────────────────────────────────────────────── -->
+    <section class="relative z-10 py-20 px-4 md:px-8">
+      <div class="max-w-6xl mx-auto">
+
+        <div class="text-center mb-14 reveal">
+          <p class="text-amber-400 text-xs font-medium uppercase tracking-[0.3em] mb-4">Memórias</p>
+          <h2 class="font-['Cormorant_Garamond'] font-light text-white" style="font-size:clamp(2rem,5vw,3rem)">
+            Mais Momentos
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+          <div class="photo-card reveal gold-glow" style="aspect-ratio:3/4">
+            <img class="object-top" src="assets/images/tomas6.jpg" alt="Celeida Tomás" loading="lazy" onerror="this.parentNode.innerHTML='<div class=\'image-placeholder\'><div class=\'text-4xl\'>📸</div></div>'" />
+          </div>
+          <div class="photo-card reveal" data-delay="60" style="aspect-ratio:3/4">
+            <img class="object-top" src="assets/images/tomas8.jpg" alt="Celeida Tomás" loading="lazy" onerror="this.parentNode.innerHTML='<div class=\'image-placeholder\'><div class=\'text-4xl\'>📸</div></div>'" />
+          </div>
+          <div class="photo-card reveal" data-delay="100" style="aspect-ratio:3/4">
+            <img class="object-top" src="assets/images/tomas3.jpg" alt="Celeida Tomás" loading="lazy" onerror="this.parentNode.innerHTML='<div class=\'image-placeholder\'><div class=\'text-4xl\'>📸</div></div>'" />
+          </div>
+          <div class="photo-card reveal" data-delay="140" style="aspect-ratio:3/4">
+            <img class="object-top" src="assets/images/tomas5.jpg" alt="Celeida Tomás" loading="lazy" onerror="this.parentNode.innerHTML='<div class=\'image-placeholder\'><div class=\'text-4xl\'>📸</div></div>'" />
+          </div>
+          <div class="photo-card reveal" data-delay="180" style="aspect-ratio:3/4">
+            <img class="object-top" src="assets/images/tomas7.jpg" alt="Celeida Tomás" loading="lazy" onerror="this.parentNode.innerHTML='<div class=\'image-placeholder\'><div class=\'text-4xl\'>📸</div></div>'" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <div class="gold-divider my-4"></div>
+
+
+    <!-- ───────────────────────────────────────────────
+         TIMELINE
+    ─────────────────────────────────────────────── -->
+    <section class="relative z-10 py-20 px-4 md:px-8">
+      <div class="max-w-2xl mx-auto">
+
+        <div class="text-center mb-14 reveal">
+          <p class="text-amber-400 text-xs font-medium uppercase tracking-[0.3em] mb-4">A tua jornada</p>
+          <h2 class="font-['Cormorant_Garamond'] font-light text-white" style="font-size:clamp(2rem,5vw,3rem)">
+            Um ano<br />
+            <span class="gold-text italic">bem vivido</span>
+          </h2>
+        </div>
+
+        <div class="relative">
+          <div class="absolute left-[17px] top-0 bottom-0 w-px timeline-bar rounded-full hidden md:block"></div>
+
+          <div class="space-y-8">
+
+            <div class="reveal flex gap-6 items-start">
+              <div class="flex-shrink-0 w-9 h-9 rounded-full flex items-center justify-center text-xs font-semibold relative z-10 timeline-node" style="color:#0d0b08">1</div>
+              <div class="flex-1 timeline-block p-6">
+                <p class="text-amber-400 text-xs uppercase tracking-widest mb-2">2025</p>
+                <h3 class="font-['Cormorant_Garamond'] text-xl font-semibold text-white mb-2">Onde tudo começou (a tradição)</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">No ano passado fiz-te uma página parecida com esta, para os teus 20 anos. Aparentemente gostaste, porque aqui estamos outra vez.</p>
+              </div>
+            </div>
+
+            <div class="reveal flex gap-6 items-start" data-delay="100">
+              <div class="flex-shrink-0 w-9 h-9 rounded-full flex items-center justify-center text-xs font-semibold relative z-10 timeline-node" style="color:#0d0b08">2</div>
+              <div class="flex-1 timeline-block p-6">
+                <p class="text-amber-400 text-xs uppercase tracking-widest mb-2">Pelo caminho</p>
+                <h3 class="font-['Cormorant_Garamond'] text-xl font-semibold text-white mb-2">Formaste-te. A sério.</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">Enquanto eu ainda estava a decidir que fonte usar nesta página, tu foste e terminaste o curso. Beca, ramo de flores, tudo. Orgulho enorme, sem kkkk desta vez.</p>
+              </div>
+            </div>
+
+            <div class="reveal flex gap-6 items-start" data-delay="200">
+              <div class="flex-shrink-0 w-9 h-9 rounded-full flex items-center justify-center text-xs font-semibold relative z-10 timeline-node" style="color:#0d0b08">3</div>
+              <div class="flex-1 timeline-block timeline-block-active p-6">
+                <p class="text-amber-300 text-xs uppercase tracking-widest mb-2">12 de Agosto · 2026</p>
+                <h3 class="font-['Cormorant_Garamond'] text-xl font-semibold text-white mb-2">O teu dia</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">21 anos. Uma página nova, jogos novos e a mesma promessa de sempre: enquanto eu souber programar, vais continuar a receber isto todos os anos.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <div class="gold-divider my-4"></div>
+
+
+    <!-- ───────────────────────────────────────────────
+         JOGOS
+    ─────────────────────────────────────────────── -->
+    <section class="relative z-10 py-20 px-4 md:px-8">
+      <div class="max-w-4xl mx-auto">
+
+        <div class="text-center mb-14 reveal">
+          <p class="text-amber-400 text-xs font-medium uppercase tracking-[0.3em] mb-4">Uma pausa para brincar</p>
+          <h2 class="font-['Cormorant_Garamond'] font-light text-white" style="font-size:clamp(2rem,5vw,3rem)">
+            🎮 Jogos do Aniversário
+          </h2>
+        </div>
+
+        <!-- Jogo 1: Memória -->
+        <div class="letter-card p-8 mb-10 reveal">
+          <h3 class="text-2xl font-semibold text-amber-400 text-center mb-2">Jogo da Memória</h3>
+          <p class="text-center text-amber-300/80 mb-6 text-sm">Encontra os pares para revelar a mensagem!</p>
+
+          <div class="game-board grid grid-cols-4 gap-4 max-w-md mx-auto mb-6" id="gameBoard"></div>
+
+          <div class="text-center">
+            <p class="text-lg text-amber-300 mb-4">Movimentos: <span id="moves">0</span></p>
+            <button onclick="resetGame()"
+                    class="bg-amber-600 hover:bg-amber-500 text-white px-6 py-3 rounded-full font-semibold transition-colors shadow-lg">
+              Novo Jogo
+            </button>
+            <div id="winMessage" class="hidden mt-4 p-4 bg-green-900 border border-green-600 rounded-lg">
+              <p class="text-green-300 font-semibold">🎉 Parabéns! Você é incrível, Celeida Tomás! 🎉</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Jogo 2: Caça ao Coração -->
+        <div class="letter-card p-8 reveal" data-delay="100">
+          <h3 class="text-2xl font-semibold text-amber-400 text-center mb-2">Caça ao Coração</h3>
+          <p class="text-center text-amber-300/80 mb-6 text-sm">Clica no máximo de corações antes que o tempo acabe!</p>
+
+          <div class="heart-field" id="heartField">
+            <div class="absolute inset-0 flex items-center justify-center text-amber-300/50 text-sm" id="heartIdle">
+              Clica em "Começar" para jogar
+            </div>
+          </div>
+
+          <div class="text-center mt-6">
+            <p class="text-lg text-amber-300 mb-4">
+              Pontos: <span id="heartScore">0</span> &middot; Tempo: <span id="heartTime">15</span>s
+            </p>
+            <button onclick="startHeartGame()" id="heartStartBtn"
+                    class="bg-amber-600 hover:bg-amber-500 text-white px-6 py-3 rounded-full font-semibold transition-colors shadow-lg">
+              Começar
+            </button>
+            <div id="heartWinMessage" class="hidden mt-4 p-4 bg-green-900 border border-green-600 rounded-lg">
+              <p class="text-green-300 font-semibold" id="heartWinText"></p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <div class="gold-divider my-4"></div>
+
+
+    <!-- ───────────────────────────────────────────────
+         CARTA
+    ─────────────────────────────────────────────── -->
+    <section class="relative z-10 py-20 px-4 md:px-8">
+      <div class="max-w-2xl mx-auto">
+
+        <div class="text-center mb-12 reveal">
+          <p class="text-amber-400/80 text-xs font-medium uppercase tracking-[0.3em] mb-4">Uma carta (a sério, dessa vez)</p>
+          <h2 class="font-['Cormorant_Garamond'] font-light text-white" style="font-size:clamp(2rem,5vw,3rem)">
+            Para a <span class="gold-text italic font-semibold">Celeida Tomás</span>
+          </h2>
+        </div>
+
+        <div class="space-y-6">
+
+          <div class="letter-card px-8 py-8 reveal">
+            <h3 class="text-xl font-semibold text-amber-400 mb-4">Você é incrível! (sim, outra vez)</h3>
+            <p class="letter-body">
+              Já disse isso todos os anos e o texto começa a ficar repetitivo, mas o problema não sou eu, és tu que continuas a dar motivos novos. Este ano então foi diferente: formaste-te, cresceste, e eu aqui só a admirar de longe (e a programar de longe também).
+            </p>
+          </div>
+
+          <div class="letter-card px-8 py-10 md:px-12 md:py-12 reveal" data-delay="100">
+            <div class="font-['Cormorant_Garamond'] text-amber-700/30 select-none leading-none -mb-4" style="font-size:6rem">"</div>
+            <h3 class="text-xl font-semibold text-amber-400 mb-4">Melhor felicitação de sempre — edição 2026 (4ª temporada)</h3>
+            <div class="letter-body space-y-4">
+              <p>
+                Na verdade, deixei o melhor para o fim, eu sou incrível eu sei, mas com certeza se existe alguém mais incrível que eu (para além do Elon Musk, Albert Einstein, Isaac Newton, a minha mãe e um monte de gente) com certeza és tu — agora oficialmente formada e tudo.
+              </p>
+              <p>
+                Já te elogiei tanto nestes quatro anos que nem sei se ainda tenho elogios novos, mas vou continuar a tentar, porque parece que é isso que a tradição pede.
+              </p>
+              <p>
+                Este ano, além de crescer, apareceste de beca e ramo de flores, então acho que agora és demasiado sofisticada para os meus jogos de coração, kkkk, mas vamos tentar mesmo assim.
+              </p>
+              <p>
+                Ainda não fiquei rico, mas quando ficar, o convite para te mandar um saldo de mili continua de pé. É a quarta vez que prometo isso, acho que já conta como investimento a longo prazo.😭
+              </p>
+            </div>
+          </div>
+
+          <div class="letter-card px-8 py-8 reveal" data-delay="150">
+            <p class="letter-body">
+              Eu amo tudo em ti, até os defeitos, e o mambo dos stickers continua exatamente na mesma, aliás acho que piorou. Mas tudo bem, já é a tua marca registada.
+            </p>
+          </div>
+
+          <div class="letter-card px-8 py-8 reveal" data-delay="200" style="background:linear-gradient(135deg, rgba(16,185,129,0.08), rgba(6,95,70,0.05)); border-color: rgba(16,185,129,0.2);">
+            <p class="letter-body text-emerald-100">
+              Tenho muita coisa guardada, mas programar isto todos os anos também cansa (assim como escrever a mesma desculpa de estar cansado, ano após ano, kkk). Se quiseres ouvir o resto, sabes onde me encontrar — de preferência com bolo.
+            </p>
+          </div>
+
+          <div class="bg-amber-900 rounded-2xl p-8 border-2 border-amber-500 reveal" data-delay="250">
+            <p class="text-amber-200 italic text-center">
+              <strong>OBS:</strong> já é a quarta vez que faço isto, e ainda assim deixo para o último minuto do dia 12. Algumas coisas nunca mudam. Parabéns pelos 21, Celeida Tomás — espero que chores outra vez. kkk
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ───────────────────────────────────────────────
+         CLOSING
+    ─────────────────────────────────────────────── -->
+    <section class="relative z-10 py-24 px-4 text-center">
+      <div class="max-w-lg mx-auto reveal">
+        <div class="w-px h-12 mx-auto mb-10" style="background:linear-gradient(to bottom,rgba(217,119,6,0.5),transparent)"></div>
+        <h2 class="font-['Cormorant_Garamond'] font-light text-white leading-snug" style="font-size:clamp(2.4rem,7vw,4rem)">
+          Feliz aniversário,<br />
+          <span class="gold-text font-semibold italic">Celeida Tomás.</span>
+        </h2>
+        <p class="text-gray-500 text-sm mt-10 tracking-widest font-light">
+          com muito carinho e amor &middot; <span class="text-gray-300">Anderson</span>
+        </p>
+        <p class="text-gray-700 text-xs mt-12">
+          Feito à mão (e à última hora, como sempre) por Anderson 💛
+        </p>
+      </div>
+    </section>
+
+
     <script>
-        // Mini-jogo: Jogo da Memória
-        const gameSymbols = ['🎂', '🎈', '🎁', '🌟', '❤️', '🎉', '🌹', '✨'];
-        let gameCards = [...gameSymbols, ...gameSymbols];
-        let flippedCards = [];
-        let matches = 0;
-        let moves = 0;
+      // ── Confetti ──
+      (function () {
+        const wrap  = document.getElementById('confetti');
+        const colors = ['#fbbf24','#f59e0b','#d97706','#fde68a','#fcd34d','#fb923c'];
+        for (let i = 0; i < 22; i++) {
+          const el   = document.createElement('div');
+          el.className = 'confetti-piece';
+          const size = 4 + Math.random() * 7;
+          el.style.cssText = [
+            'left:'              + (Math.random() * 100)       + '%',
+            'width:'             + size                         + 'px',
+            'height:'            + size                         + 'px',
+            'background:'        + colors[Math.floor(Math.random() * colors.length)],
+            'animation-duration:'+ (8 + Math.random() * 10)    + 's',
+            'animation-delay:'   + (Math.random() * 9)         + 's',
+            'border-radius:'     + (Math.random() > 0.45 ? '50%' : '2px'),
+            'opacity:0.65',
+          ].join(';');
+          wrap.appendChild(el);
+        }
+      })();
 
-        function shuffleArray(array) {
-            for (let i = array.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [array[i], array[j]] = [array[j], array[i]];
+      // ── Scroll reveal ──
+      const revealObserver = new IntersectionObserver(
+        entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+        { threshold: 0.1 }
+      );
+      document.querySelectorAll('.reveal').forEach(el => {
+        const d = el.dataset.delay;
+        if (d) el.style.transitionDelay = d + 'ms';
+        revealObserver.observe(el);
+      });
+
+      // ── Jogo da Memória ──
+      const gameSymbols = ['🎂', '🎈', '🎁', '🌟', '❤️', '🎉', '🎓', '✨'];
+      let gameCards = [...gameSymbols, ...gameSymbols];
+      let flippedCards = [];
+      let matches = 0;
+      let moves = 0;
+
+      function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+      }
+
+      function createGameBoard() {
+        const gameBoard = document.getElementById('gameBoard');
+        gameBoard.innerHTML = '';
+        shuffleArray(gameCards);
+
+        gameCards.forEach((symbol, index) => {
+          const card = document.createElement('div');
+          card.className = 'game-card w-16 h-16 cursor-pointer';
+          card.innerHTML = `
+            <div class="card-inner w-full h-full relative">
+              <div class="card-front bg-amber-600 rounded-lg flex items-center justify-center text-2xl font-bold text-gray-900 border-2 border-amber-500 shadow-lg">
+                ?
+              </div>
+              <div class="card-back bg-gray-800 rounded-lg flex items-center justify-center text-3xl border-2 border-amber-400 shadow-lg">
+                ${symbol}
+              </div>
+            </div>
+          `;
+          card.onclick = () => flipCard(card, symbol, index);
+          gameBoard.appendChild(card);
+        });
+      }
+
+      function flipCard(cardElement, symbol, index) {
+        if (flippedCards.length >= 2 || cardElement.classList.contains('card-flipped')) return;
+
+        const cardInner = cardElement.querySelector('.card-inner');
+        cardInner.classList.add('card-flipped');
+        flippedCards.push({element: cardElement, symbol: symbol, index: index});
+
+        if (flippedCards.length === 2) {
+          moves++;
+          document.getElementById('moves').textContent = moves;
+
+          setTimeout(() => {
+            if (flippedCards[0].symbol === flippedCards[1].symbol &&
+                flippedCards[0].index !== flippedCards[1].index) {
+              matches++;
+              flippedCards = [];
+
+              if (matches === gameSymbols.length) {
+                document.getElementById('winMessage').classList.remove('hidden');
+              }
+            } else {
+              flippedCards.forEach(card => {
+                card.element.querySelector('.card-inner').classList.remove('card-flipped');
+              });
+              flippedCards = [];
             }
-            return array;
+          }, 1000);
         }
+      }
 
-        function createGameBoard() {
-            const gameBoard = document.getElementById('gameBoard');
-            gameBoard.innerHTML = '';
-            shuffleArray(gameCards);
-            
-            gameCards.forEach((symbol, index) => {
-                const card = document.createElement('div');
-                card.className = 'game-card w-16 h-16 cursor-pointer';
-                card.innerHTML = `
-                    <div class="card-inner w-full h-full relative">
-                        <div class="card-front bg-amber-600 rounded-lg flex items-center justify-center text-2xl font-bold text-gray-900 border-2 border-amber-500 shadow-lg">
-                            ?
-                        </div>
-                        <div class="card-back bg-gray-700 rounded-lg flex items-center justify-center text-3xl border-2 border-amber-400 shadow-lg">
-                            ${symbol}
-                        </div>
-                    </div>
-                `;
-                card.onclick = () => flipCard(card, symbol, index);
-                gameBoard.appendChild(card);
-            });
-        }
-
-        function flipCard(cardElement, symbol, index) {
-            if (flippedCards.length >= 2 || cardElement.classList.contains('card-flipped')) return;
-
-            const cardInner = cardElement.querySelector('.card-inner');
-            cardInner.classList.add('card-flipped');
-            flippedCards.push({element: cardElement, symbol: symbol, index: index});
-
-            if (flippedCards.length === 2) {
-                moves++;
-                document.getElementById('moves').textContent = moves;
-                
-                setTimeout(() => {
-                    if (flippedCards[0].symbol === flippedCards[1].symbol && 
-                        flippedCards[0].index !== flippedCards[1].index) {
-                        // Match encontrado
-                        matches++;
-                        flippedCards = [];
-                        
-                        if (matches === gameSymbols.length) {
-                            document.getElementById('winMessage').classList.remove('hidden');
-                        }
-                    } else {
-                        // Não é match, virar as cartas de volta
-                        flippedCards.forEach(card => {
-                            card.element.querySelector('.card-inner').classList.remove('card-flipped');
-                        });
-                        flippedCards = [];
-                    }
-                }, 1000);
-            }
-        }
-
-        function resetGame() {
-            flippedCards = [];
-            matches = 0;
-            moves = 0;
-            document.getElementById('moves').textContent = moves;
-            document.getElementById('winMessage').classList.add('hidden');
-            createGameBoard();
-        }
-
-        // Inicializar o jogo
+      function resetGame() {
+        flippedCards = [];
+        matches = 0;
+        moves = 0;
+        document.getElementById('moves').textContent = moves;
+        document.getElementById('winMessage').classList.add('hidden');
         createGameBoard();
+      }
+
+      createGameBoard();
+
+      // ── Jogo Caça ao Coração ──
+      const HEART_GAME_DURATION = 15;
+      const heartEmojis = ['❤️', '💛', '🧡'];
+      let heartScore = 0;
+      let heartTimeLeft = HEART_GAME_DURATION;
+      let heartSpawnInterval = null;
+      let heartTimerInterval = null;
+      let heartGameRunning = false;
+
+      function startHeartGame() {
+        if (heartGameRunning) return;
+        heartGameRunning = true;
+
+        heartScore = 0;
+        heartTimeLeft = HEART_GAME_DURATION;
+        document.getElementById('heartScore').textContent = heartScore;
+        document.getElementById('heartTime').textContent = heartTimeLeft;
+        document.getElementById('heartWinMessage').classList.add('hidden');
+        document.getElementById('heartStartBtn').disabled = true;
+        document.getElementById('heartStartBtn').classList.add('opacity-50', 'cursor-not-allowed');
+
+        const field = document.getElementById('heartField');
+        field.innerHTML = '';
+
+        heartSpawnInterval = setInterval(spawnHeart, 650);
+        heartTimerInterval = setInterval(() => {
+          heartTimeLeft--;
+          document.getElementById('heartTime').textContent = heartTimeLeft;
+          if (heartTimeLeft <= 0) endHeartGame();
+        }, 1000);
+      }
+
+      function spawnHeart() {
+        const field = document.getElementById('heartField');
+        const heart = document.createElement('button');
+        heart.className = 'heart-target';
+        heart.type = 'button';
+        heart.textContent = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+
+        const fieldRect = field.getBoundingClientRect();
+        const x = Math.random() * Math.max(fieldRect.width - 40, 10);
+        const y = Math.random() * Math.max(fieldRect.height - 40, 10);
+        heart.style.left = x + 'px';
+        heart.style.top = y + 'px';
+
+        heart.onclick = () => {
+          heartScore++;
+          document.getElementById('heartScore').textContent = heartScore;
+          heart.remove();
+        };
+
+        heart.addEventListener('animationend', () => heart.remove());
+        field.appendChild(heart);
+      }
+
+      function endHeartGame() {
+        clearInterval(heartSpawnInterval);
+        clearInterval(heartTimerInterval);
+        heartGameRunning = false;
+
+        document.getElementById('heartField').innerHTML =
+          '<div class="absolute inset-0 flex items-center justify-center text-amber-300/50 text-sm">Clica em "Começar" para jogar de novo</div>';
+
+        document.getElementById('heartStartBtn').disabled = false;
+        document.getElementById('heartStartBtn').classList.remove('opacity-50', 'cursor-not-allowed');
+
+        const winBox = document.getElementById('heartWinMessage');
+        const winText = document.getElementById('heartWinText');
+        winText.textContent = heartScore >= 10
+          ? `🎉 ${heartScore} corações! Recorde de amor batido, Celeida Tomás! 🎉`
+          : `Apanhaste ${heartScore} corações. Nada mau, mas eu sei que consegues mais. 💛`;
+        winBox.classList.remove('hidden');
+      }
     </script>
-</body>
+  </body>
 </html>
